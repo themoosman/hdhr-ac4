@@ -11,6 +11,7 @@ import json
 import re
 import os
 import sys
+import traceback
 
 # These must be declared in the docker or shell environment
 HDHR_IP = os.getenv("HDHR_IP")
@@ -23,7 +24,7 @@ if HDHR_IP is None:
 # This is needed for some systems like PLEX that track the DeviceID
 try:
     DeviceID_swap = int(os.getenv("DEVICEID_SWAP", 1))
-except:
+except Exception:
     print("WARN: Default DeviceID_swap = 0")
     DeviceID_swap = 0
 
@@ -84,14 +85,20 @@ async def in_channel(channel: str, request: Request) -> Any:
 
 
 if __name__ == "__main__":
-    # only for dev, prod runs through uvicorn command line
-    app_thread = Thread(
-        target=uvicorn.run, kwargs={"app": app, "port": 8080, "host": "0.0.0.0"}
-    )
-    tune_thread = Thread(
-        target=uvicorn.run, kwargs={"app": tune, "port": 5004, "host": "0.0.0.0"}
-    )
-    app_thread.start()
-    tune_thread.start()
-    app_thread.join()
-    tune_thread.join()
+    try:
+        # only for dev, prod runs through uvicorn command line
+        app_thread = Thread(
+            target=uvicorn.run, kwargs={"app": app, "port": 8080, "host": "0.0.0.0"}
+        )
+        tune_thread = Thread(
+            target=uvicorn.run, kwargs={"app": tune, "port": 5004, "host": "0.0.0.0"}
+        )
+        app_thread.start()
+        tune_thread.start()
+        app_thread.join()
+        tune_thread.join()
+    except KeyboardInterrupt:
+        print("Terminating due to keyboard interrupt")
+    except Exception:
+        print("Terminating due to unexpected error: %s", sys.exc_info()[0])
+        print("%s", traceback.format_exc())

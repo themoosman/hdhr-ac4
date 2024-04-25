@@ -17,7 +17,7 @@ def stream_requests_to_ffmpeg(response: Response, ffmpeg: Popen):
             if written <= 0:
                 break
             # sleep(0.01)
-    except:
+    except Exception:
         pass
 
 
@@ -25,15 +25,11 @@ async def stream_ffmpeg_to_response(ffmpeg: Popen, feeder: Thread, request: Requ
     while 1:
         try:
             data = ffmpeg.stdout.read(1024 * 128)
-            if (
-                len(data) <= 0
-                or not feeder.is_alive()
-                or await request.is_disconnected()
-            ):
+            if len(data) <= 0 or not feeder.is_alive() or await request.is_disconnected():
                 break
             yield data
             # sleep(0.01)
-        except:
+        except Exception:
             break
     await request.close()
     ffmpeg.kill()

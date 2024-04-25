@@ -89,7 +89,7 @@ The container runs HTTP servers on port 8080 and 5004 and supports the following
 - Many thanks to the Emby team for the ffmpeg with working AC4. Since its open source software, there should not be any problems here.
 
 ## TODO
-None
+- Improve logging
 
 ## License
 This project is release under the Apache 2.0 license
