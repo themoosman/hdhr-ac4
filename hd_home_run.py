@@ -11,7 +11,7 @@ from time import sleep
 def stream_requests_to_ffmpeg(response: Response, ffmpeg: Popen):
     try:
         for data in response.iter_content(chunk_size=1024 * 128):
-            if ffmpeg.poll() != None:
+            if ffmpeg.poll() is not None:
                 break
             written = ffmpeg.stdin.write(data)
             if written <= 0:

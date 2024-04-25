@@ -1,3 +1,5 @@
+![](https://github.com/themoosman/hdhr-ac4/workflows/flake8%20Lint/badge.svg)
+
 # hdhr-ac4 v1.6.0
 
 This is a fork of [johnb-7/hdhr-ac4](https://github.com/johnb-7/hdhr-ac4), with some simplification and a much smaller prebuilt image.
