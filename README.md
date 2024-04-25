@@ -75,9 +75,9 @@ The container runs HTTP servers on port 8080 and 5004 and supports the following
 - http://HOST:8080/ - returns info and version about hdhr-ac4 docker
 - http://HOST:8080/discover.json - returns the same response as the real HDHomerun device, but substitutes the hdhr-ac4 IP address in the appropriate locations.
 - http://HOST:8080/lineup.json - queries the real HDHomerun device for its service list and then does the following:
-1. replaces all the IP addresses with the hdhr-ac4 IP address
-2. replaces the ATSC3=1 entry with AudioCodec=AC3
-3. strips out all non ATSC3 programs
+  1. replaces all the IP addresses with the hdhr-ac4 IP address
+  2. replaces the ATSC3=1 entry with AudioCodec=AC3
+  3. strips out all non ATSC3 programs
 - http://HOST:5004/auto/{program} - forwards the request to the real HDHomerun device, and then pipes the stream through ffmpeg and then back to the orignal requester
 - http://HOST:8080/lineup_status.json - returns the same response as the real HDHomerun device
 
@@ -89,7 +89,7 @@ The container runs HTTP servers on port 8080 and 5004 and supports the following
 - Many thanks to the Emby team for the ffmpeg with working AC4. Since its open source software, there should not be any problems here.
 
 ## TODO
-
+None
 
 ## License
 This project is release under the Apache 2.0 license
