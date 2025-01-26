@@ -11,7 +11,7 @@ RUN apt-get -yqq update && \
 # Extract ffmpeg from Emby installer (change file name as needed)
 # https://emby.media/linux-server.html add in repo directory
 FROM base as ffmpeg
-RUN curl -L -o emby.deb https://github.com/MediaBrowser/Emby.Releases/releases/download/4.8.5.0/emby-server-deb_4.8.5.0_amd64.deb
+RUN curl -L -o emby.deb https://github.com/MediaBrowser/Emby.Releases/releases/download/4.8.10.0/emby-server-deb_4.8.10.0_amd64.deb
 RUN ar x emby.deb data.tar.xz && \
     tar xf data.tar.xz
 
